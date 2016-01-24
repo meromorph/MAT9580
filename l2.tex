@@ -1,0 +1,469 @@
+In topology, Brown representability tells us that cohomology theories $H^*$ (i.e., functors satisfying homotopy invariance, wedge axiom and Mayer-Vietoris) are represented by $\Omega$-spectra. This means that, for $X$ a pointed CW-complex,  there is an $\Omega$-spectrum $E=(E_n)_{n\ge0}$ such that
+\[
+H^n(X)=[X,E_n]_*.
+\]The $\Omega$-spectra are the fibrant objects in the stable model structure on spectra.
+
+It is desirable to have such a universality also on the motivic side. From the category $\calMS_F$ we build the \emph{stable motivic homotopy category} $\calSH(F)$ as the category of motivic spectra stabilized with respect to $\PP^1$. Note that we have an embedding
+\[\Sigma_{\PP^1}^\infty:\calMS_F\rightarrow\calSH(F)
+\]defined as follows. For $X\in \calMS_F$, let $X_+\defeq X\amalg\Spec F$ be the associated pointed space. Then the spectrum $\Sigma^\infty_{\PP^1}(X)$ is defined as having constituent spaces $(\Sigma^\infty_{\PP^1}(X))_n\defeq \Sigma^n_{\PP^1}(X)$ and identity structure maps. We mention that there is a weak equivalence $\PP^1\cong S^1\wedge\G_m$.
+
+Several important cohomology theories are represented by objects of $\calSH(F)$:
+\paragraph{Motivic cohomology.}There is a motivic spectrum $\mathsf M\Z$ which yields the bigraded cohomology theory known as \emph{motivic cohomology} as follows. Let $X$ be a smooth $F$-scheme, regarded as a representable sheaf in $\calMS_F$. Then we put
+\[
+\mathsf M\Z^{p,q}(X)\defeq\Hom_{\calSH(F)}(\Sigma^\infty_{\PP^1}X_+,S^{p-q}\wedge\G_m^q\wedge \mathsf M\Z).
+\]
+
+\paragraph{Algebraic $K$-theory.}The spectrum $\KGL$ represents algebraic $K$-theory, in the sense of Quillen. More precisely, we have an isomorphism
+\[
+\KGL^{p,q}(X)\cong K_{2q-p}(X).
+\]for any $X\in\Sm_F$.
+\paragraph{Algebraic cobordism.}The spectrum $\mathsf{MGL}$ represents the bigraded theory of algebraic cobordism. First introduced by Voevodsky, this algebraic cobordism is thought of as ``the universal orientable theory''. For $F\subseteq\C$, there is a realization functor $\re_\C:\calSH(F)\to\calSH$, where $\calSH$ is the ordinary stable homotopy category. This functor satisfies $\re_\C(\mathsf{MGL})=\mathsf{MU }$, where $\mathsf{MU}$ is complex cobordism.
+
+\section{Properties of $\calSH(F)$}
+The categegory $\calSH(F)$ has the following properties.
+\begin{itemize}
+\item $\calSH(F)$ obtained by inverting $\Sigma_{\PP^1}$.
+\item $\calSH(F)$ is a triangulated category, with shift functor $\Sigma_s\defeq -\wedge S^1$.
+\item There are realization functors 
+\[\begin{tikzcd}
+& \cal{SH}\\
+\calSH(F)\arrow{ru}{\re_\C}[swap]{F\subseteq\C}\arrow{rd}{\re_\R}[swap]{F\subseteq\R} &\\
+& \calSH^{\Z/2}\end{tikzcd}\]
+Here $\calSH^{\Z/2}$ is the $\Z/2$-equivariant stable homotopy category. The categories $\calSH$ and $\calSH^{\Z/2}$ are sometimes thought of as ``test objects'': If we want to investigate whether the category $\calSH(F)$ has a certain property, it can often be helpful to first check if the property holds for $\calSH$ and $\calSH^{\Z/2}$.
+\item There is a six functor formalism.
+\item We have a slice filtration, i.e., a filtration
+\[
+\cdots\subseteq\Sigma_{\PP^1}\calSH(F)^{\text{eff}}\subseteq\calSH(F)^{\text{eff}}\subseteq\Sigma^{-1}_{\PP^1}\calSH(F)^{\text{eff}}\subseteq\cdots\subseteq\calSH(F)
+\]of triangulated subcategories of $\calSH(F)$. This gives meaning to $\mathsf M\Z$ being a universal object, because the slice $0$ of the motivic sphere spectrum $\mathbf{1}=\Sigma_{\PP^1}^\infty(\Spec(F)_+)$, $s_0\mathbf{1}$, satisfies
+\[s_0\mathbf{1}=\mathsf M\Z.\]
+Via the realization functor $\re_\C$, the motivic sphere spectrum $\mathbf 1$ is mapped to the topological sphere spectrum. Furthermore, if $\mathcal E\in\calSH(F)$, then $s_*\mathcal E\in\mathsf M\Z\text{-mod}$.
+\end{itemize}
+
+\section{Grothendieck's six functor formalism}
+The category $\calSH(F)$ satisfies a six functor formalism. This means that given a scheme map $f:Y\to X$, the following holds:
+\begin{enumerate}
+\item There exist three adjoint functor pairs:
+\begin{align*}
+f^*:\calSH(X)&\rightleftarrows\calSH(Y):f_*\text{ (no restrictions on $f$);}\\
+f_!:\calSH(Y)&\rightleftarrows\calSH(X):f^!\text{ (for $f$ separated and of finite type)};\\
+(\otimes,\ul{\Hom})&, \text{ giving a closed symmetric monoidal structure on $\calSH(X)$.}\end{align*}
+\item There is a natural transformation $\alpha_f:f_!\to f_*$ which is an isomorphism if $f$ is proper.
+\item Given a pullback square
+\[\begin{tikzcd}
+Y'\arrow{r}{f'}\arrow{d}{g'} & X'\arrow{d}{g}\\
+Y\arrow{r}{f} & X\end{tikzcd}\]
+with $f$ separated of finite type, there are natural isomorphisms
+\[\begin{tikzcd}
+g^*f_!\arrow{r}{\cong} & f_!'g'^*,\\
+g'_*f'^!\arrow{r}{\cong} & f^!g_*.
+\end{tikzcd}\]
+\item For any closed immersion $i:Z\rightarrow S$ with complementary open immersion $j$, there is a distinguished triangle of natural transformations
+\[\begin{tikzcd}j_!j^!\arrow{r}{\alpha_j'} & \id\arrow{r}{\alpha_i} & i_*i^*\arrow{r}  & j_!j^![1],
+\end{tikzcd}\]where $\alpha_j'$ is the counit of the adjunction, and $\alpha_i$ denotes the unit.
+\end{enumerate}
+In addition to the above properties there are purity, duality and exchange isomorphisms, but we will not elaborate on those here.
+
+\section{$\A^1$-chain connectedness}
+Back to geometry, there is a notion of ``path connectedness'' in motivic homotopy theory:
+
+\begin{definition}[Asok-Morel]
+A scheme $X\in\Sm_F$ is \emph{$\A^1$-chain connected} if for every finitely generated separable field extension $E/F$ we have $X(E)\ne\varnothing$, and given any pair $x,y\in X(E)$, there is a finite sequence of
+\begin{itemize}
+\item $E$-rational points 
+\[
+x=x_0,x_1,\dots,x_{N-1},x_N=y \quad\in X(E)
+\]
+\item morphisms $f_i:\A^1_E\to X$ such that $f_i(0)=x_{i-1}$ and $f_i(1)=x_i$, $i=1,\dots,N$.
+\end{itemize}
+\end{definition}
+We think of this definition as the property that ``any two points can be connected by the images of a chain of maps from the affine line''.
+
+\begin{remark}
+The extension $E/F$ need \emph{not} be finite, so this definition is meaningful also for e.g., $\C$. Thus we can for example ask for $\C(t)$ points. 
+\end{remark}
+
+\begin{example}
+Stable $F$-rational schemes $X$ (i.e., $X\times\PP^N$ is birational to a projective space) are $\A^1$-chain connected.
+\end{example}
+
+\begin{theorem}[Asok-Morel]
+Suppose that $X\in\Sm_F$ is projective and that $E/F$ is a finitely generated separable extension. Let $\sim$ denote $\A^1$-chain equivalence. Then 
+\[
+\pi_0^{\A^1}(X)(E)\cong X(E)/\sim
+\]where $\pi_0^{\A^1}(X)$ is the Nisnevich sheaf on $\Sm_F$ assocoiated with the presheaf $U\mapsto [U,X]_{\A^1}$.
+
+In particular, $\A^1$-chain connectedness implies $\A^1$-connectedness (where $X$ is \emph{$\A^1$-connected} if $\pi_0^{\A^1}(X)\to\Spec F$ is an isomorphism).
+\end{theorem}
+
+\begin{remark}
+Whether $\A^1$-connectedness implies $\A^1$-chain connectedness or not is an open problem.
+\end{remark}
+
+\begin{example}[Russell cubic]
+Let $X$ be the Russell cubic in $\A^4_\C$, given by 
+\[
+x+x^2y+z^2+t^3=0.
+\]There is a $\C^*\defeq\C\setminus\{0\}$-action on $X$, defined by
+\begin{align*}
+\C^*\times X&\to X\\
+(\lambda,(x,y,z,t))&\mapsto(\lambda^6x, \lambda^{-6}y,\lambda^3z,\lambda^2t).
+\end{align*}
+The functions $xy$ and $yz^2$ are $\C^*$-invariant, so the map
+\begin{align*}
+\phi:X&\to\A^2\\
+(x,y,z,t)&\mapsto (xy,yz^2)
+\end{align*}are constant on the $\C^*$-orbits. In fact, $\phi$ defines a GIT-quotient of $X$ by this action.
+
+The following is known about $X$:
+\begin{itemize}
+\item $X$ is topologically contractible (this does \emph{not} imply that $X$ is $\A^1$-contractible).
+\item $X$ has trivial vector bundles (it a theorem that $\A^1$-contractible implies trivial vector bundles).
+\item $X$ has trivial motivic cohomology. This implies, via the slice filtration, that $\Sigma_{\PP^1}^\infty X$ is contractible, i.e., $X$ is stably contractible.
+\end{itemize}
+Fasel showed in 2015 that $X$ is $\A^1$-contractible. It is not known if $X$ is $\A^1$-chain connected, or, more generally, which classes of topologically contractible schemes are $\A^1$-chain connected.
+\end{example}
+
+\section{The Yoneda embedding}
+We recall some category theory that is needed later on.
+
+\begin{definition}[Yoneda embedding, 1954]
+Suppose $\calC$ be a locally small category (i.e., the $\Hom$-objects are sets). The \emph{Yoneda-embedding} is the functor 
+\[
+r:\calC \to[\calC^\op,\Set]\]
+which sends an object in $\calC$ to the corresponding representable functor:
+\[\calC\ni C\mapsto rC\defeq\Hom_\calC(-,C)\in[\calC^\op,\Set].
+\]
+\end{definition}
+Note that a morphism $f:C\to D$ in $\calC$ yields a natural transformation
+\[rf=\Hom_\calC(-,f):\Hom_\calC(-,C)\to\Hom_\calC(-,D)
+\]by composing with $f$. It follows that $r$ is indeed a functor.
+
+\begin{lemma}[Yoneda]\label{Yoneda}
+Let $\calC$ be a locally small category. For any object $C\in\calC$ and any functor $F\in[\calC^\op,\Set]$, there is an isomorphism 
+\[
+\Hom_{[\calC^\op,\Set]}(rC,F)\cong FC,
+\]which is natural in both $C$ and $F$.
+\end{lemma}
+
+\begin{remark}
+Naturality in $C$ means that, given any map $f:C\to D$ in $\calC$, the following diagram commutes.
+\[\begin{tikzcd}
+\Hom(rC,F)\arrow{r}{\cong} & FC\\
+\Hom(rD,F)\arrow{u}{\Hom(rf,F)}\arrow{r}[swap]{\cong} & FD\arrow{u}[swap]{Ff}
+\end{tikzcd}\]
+Similarly, naturality in $F$ means that given any map $\theta:F\to G$ in $[\calC^\op,\Set]$, we have a commutative diagram:
+\end{remark}
+\[\begin{tikzcd}
+\Hom(rC,F)\arrow{r}{\cong}\arrow{d}[swap]{\Hom(rC,\theta)} & FC\arrow{d}{\theta_C}\\
+\Hom(rC,G)\arrow{r}[swap]{\cong} & GC
+\end{tikzcd}\]
+
+\begin{proof}[Proof of \Cref{Yoneda}]
+We define an isomorphism
+\[\eta_{C,F}:\Hom(rC,F)\to FC,\] by
+\[
+\eta_{C,F}(\theta)\defeq\theta_C(1_C)\in FC,
+\]for $\theta\in\Hom(rC,F)$. To ease notation, let $x_\theta\defeq\theta_C(1_C)$.
+
+We aim to define an inverse to $\eta_{C,F}$. To this end, suppose $a\in FC$, and define a natural transformation $\theta_a:rC\to F$ as follows. Given any $C'\in\calC$, define:
+\begin{align*}
+(\theta_a)_{C'}:\Hom(C',C)&\to FC'\\
+f&\mapsto (\theta_a)_{C'}(f)\defeq F(f)(a).
+\end{align*}
+We must show that $\theta_a$ is a natural transformation, i.e., given $f:C''\to C'$ in $\calC$, we must show that the diagram
+\[\begin{tikzcd}\Hom(C'',C)\arrow{r}{(\theta_a)_{C''}} & FC''\\
+\Hom(C',C)\arrow{u}{\Hom(f,C)}\arrow{r}[swap]{(\theta_a)_{C'}} & FC'\arrow{u}[swap]{F(f)}
+\end{tikzcd}\]
+commutes. So take $g\in (rC)(C')=\Hom(C',C)$, then
+\begin{align*}
+((\theta_a)_{C''}\circ\Hom(f,C))(g)&= (\theta_a)_{C''}(gf)\\
+&= F(gf)(a)\\
+&= (F(f)\circ F(g))(a)\\
+&= F(f)(\theta_a)_{C'}(g),
+\end{align*}
+as desired.
+
+We must show that $\theta_a$ and $x_\theta$ are mutually inverse. Given a natural transformation $\theta:rC\to F$ we have
+\[
+(\theta_{x_\theta})_{C'}(g)=F(g)(x_\theta)=F(g)(\theta_C(1_C))
+\]by definition. Since 
+\begin{align}(F(g))\circ\theta_C=\theta_{C'}\circ rC(g)\label{nat1}
+\end{align}by naturality of $\theta$, we have
+\[
+(\theta_{x_\theta})_{C'}(g)=F(g)(\theta_C(1_C))=\theta_{C'}\circ rC(g)(1_C)=\theta_{C'}(g),
+\]
+hence $\theta_{x_\theta}=\theta$. 
+
+Similarly, for $a\in FC$ we have
+\begin{align*}
+x_{\theta_a}&=(\theta_a)_C(1_C)\\
+&= F(1_C)(a)\\
+&=1_{FC}(a)=a,
+\end{align*}
+where the second equality is the definition of $\theta_a$, and the third inequality holds since $F$ is a functor. This shows that $\Hom(rC,F)\cong FC$.
+
+We proceed to show the naturality in both variables. Let $\phi:F\to F'$, then
+\begin{align*}
+\phi_C(x_\theta)&=\phi_C(\theta_C(1_C))\\
+&= (\phi\theta)_C(1_C)\\
+&= x_{\phi\theta}\\
+&= \eta_{C,F'}(\Hom(rC,\phi)(\theta)),
+\end{align*}
+hence the diagram
+\[\begin{tikzcd}
+\Hom(rC,F)\arrow{r}{\eta_{C,F}}\arrow{d}[swap]{\Hom(rC,\phi)} & FC\arrow{d}{\phi_C}\\
+\Hom(rC,F')\arrow{r}[swap]{\eta_{C,F'}} & F'C
+\end{tikzcd}\]
+is commutative.
+
+For naturality in the variable $C$, take a morphism $f\colon C'\to C$. Then
+\begin{align*}
+\eta_{C',F}\circ\Hom(rf, F)(\theta) &= \eta_{C',F}(\theta\circ rf)\\
+&= (\theta\circ rf)_{C'}(1_{C'})\\
+&= (\theta_{C'}\circ (rf)_{C'})(1_{C'})\\
+&=\theta_{C'}(f\circ1_{C'})\\
+&=\theta_{C'}(f)\\
+&= \theta_{C'} (1_C\circ f)\\
+&=\theta_{C'}\circ(rC)(f)(1_C)
+\end{align*}
+Using \Cref{nat1} again, we can write this as
+\begin{align*}
+\theta_{C'}\circ(rC)(f)(1_C) &= F(f)\circ\theta_C(1_C)\\
+&= F(f)\circ\eta_{C,F}(\theta).
+\end{align*}
+This shows that the diagram
+\[\begin{tikzcd}
+\Hom(rC',F)\arrow{r}{\eta_{C',F}} & FC'\\
+\Hom(rC,F)\arrow{u}{\Hom(rf,F)}\arrow{r}[swap]{\eta_{C,F}} & FC\arrow{u}[swap]{Ff}
+\end{tikzcd}\]
+is commutative, as desired.
+\end{proof}
+
+\begin{corollary}
+The Yoneda embedding is full and faithful.
+\end{corollary}
+
+\begin{proof}
+Let $C,D\in\calC$. Taking $F=rD$ in the Yoneda lemma we immediately have
+\[
+\Hom_\calC(C,D)=(rD)(C)\cong \Hom_{[\calC^\op,\Set]}(rC,rD).
+\]We must show that this isomorphism is induced by $r$. Let $f\in\Hom_\calC(C,D)$. Then, by the proof of the Yoneda lemma, $f$ is sent under the above bijection to the natural transformation 
+\[\theta_f\in\Hom_{[\calC^\op,\Set]}(rC,rD)
+\]defined by
+\begin{align*}
+(\theta_f)_{C'}(g)=f\circ g
+\end{align*}for $g\in(rC)(C')=\Hom_\calC(C',C)$. But this says that 
+\[
+(\theta_f)_{C'}=(rf)_{C'}:\Hom_\calC(C',C)\to\Hom_\calC(C',D),
+\]hence $\theta_f=rf$.
+\end{proof}
+
+\begin{remark}
+That $\calC$ is locally small does not imply that $[\calC^\op,\Set]$ is locally small. However, the Yoneda lemma ensures that $\Hom_{[\calC^\op,\Set]}(rC,F)$ is always a set.
+\end{remark}
+
+\begin{corollary}[Yoneda principle]
+Suppose $C$ and $D$ are objects in the locally small category $\calC$. If $rC\cong rD$ in $[\calC^\op,\Set]$, then $C\cong D$ in $\calC$.
+\end{corollary}
+
+Thus $r$ is a representation of $\calC$ in the presheaf category $[\calC^\op,\Set]$.
+
+\begin{example}
+Important for us will be the case when $\calC=\Sm_F$. Later on, we will often consider a scheme $X\in\Sm_F$ as a presheaf, i.e., we identify $X$ with its image in $[\Sm_F^\op,\Set]$ under the Yoneda embedding.
+\end{example}
+
+\begin{example}
+A category $\calC$ is \emph{Cartesian closed} if 
+\begin{itemize}
+\item $\calC$ has a terminal object
+\item The product $X\times Y$ of two objects $X$, $Y$ of $\calC$ exists in $\calC$
+\item The exponential $X^Y$ of two objects $X$, $Y$ of $\calC$ exists in $\calC$.
+\end{itemize}
+The third axiom means that the functor $-\times Y:\calC\to\calC$ has a right adjoint.
+
+Using the Yoneda principle, we can show that for any objects $A$, $B$ and $C$ in a Cartesian closed category $\calC$, there is an isomorphism
+\[
+(A^B)^C\cong A^{(B\times C)}.
+\]Indeed, if $X\in\calC$, then
+\[
+\Hom_{\calC}(X,(A^B)^C)\cong\Hom_{\calC}(X\times C,A^B)
+\]by adjointness. Continuing, we obtain:
+\begin{align*}
+\Hom_\calC(X\times C,A^B) &\cong\Hom_\calC((X\times C)\times B,A)\\
+&\cong\Hom_\calC(X\times(B\times C),A)\\
+&\cong\Hom_\calC(X,A^{(B\times C)}).
+\end{align*}
+This yields $r(A^B)^C\cong rA^{(B\times C)}$, hence $(A^B)^C\cong A^{(B\times C)}$ by the Yoneda principle.
+\end{example}
+
+\subsection{Limits and colimits in functor categories}
+Let us briefly recall the definition of limits and colimits. Let $\calC$ and $J$ be categories, and let $F:J\to\calC$ be a diagram in $\calC$ (that is, $F$ is a functor). We think of $J$ as the \emph{index category}, and the objects of $J$ are often written as $i$, $j\in J$. Furthermore, we will write $F_j\defeq F(j)\in\calC$ for the values of $F$.
+
+\begin{definition}[Cones]
+Given a diagram $F:J\to\calC$, a \emph{cone} to $F$ consists of an object $C\in\calC$ and a collection of morphisms
+\[
+\psi_j:C\to F_j
+\]for each $j\in J$, such that for any morphism $\alpha_{ij}:i\to j$ in $J$, there following diagram is commutative:
+\[\begin{tikzcd}
+& C\arrow{ld}[swap]{\psi_i}\arrow{rd}{\psi_j}\\
+F_i\arrow{rr}[swap]{F_{\alpha_{ij}}} & & F_j
+\end{tikzcd}\]
+There is a category of cones to $F$: A morphism
+\[
+\theta:(C,\psi_j)\to(C',\psi_j')
+\]of cones is a morphism $\theta:C\to C'$ in $\calC$ making each diagram
+\[\begin{tikzcd}
+C\arrow{rr}{\theta}\arrow{rd}[swap]{\psi_j} & & C'\arrow{ld}{\psi_j'}\\
+& F_j &
+\end{tikzcd}\]commutative.
+\end{definition}
+
+\begin{definition}
+A \emph{limit} of a diagram $F:J\to\calC$, written $\phi_i:\lim_{j\in J}F_j\to F_i$, is a terminal object in the category of cones to $F$.
+\end{definition}
+Thus a limit of $F$ has the universal property that given any cone $(C,\psi_j)$ to $F$, there is a unique morphism $u:C\to\lim F_j$ rendering the following diagram commutative:
+\[\begin{tikzcd}
+& C
+\arrow[ddr, bend left, "\psi_k"]
+\arrow[ddl, bend right, "\psi_i"]
+\arrow[d, dotted, "\exists!u"] &  \\
+ & \lim_{j\in J}F_j\arrow[dr, "\phi_k"]\arrow[dl, "\phi_i"] & \\
+F_i\arrow[rr, "F_{\alpha_{ik}}"] & &F_k
+\end{tikzcd}\]
+A limit of $F$, if it exists, is hence unique up to unique isomorphism.
+
+\begin{exercise}\label{preserving}
+Let $\calC$ be a category and $C$ an object of $\calC$. Show that the functor $\Hom(C,-)$ preserves limits, and hence that representable functors preserves limits.
+\end{exercise}
+
+Dual to the notion of limits we give the definition of colimits:
+
+\begin{definition}
+Given a diagram $F:J\to\calC$, a \emph{cocone} to $F$ is consists of an object $C\in\calC$ and morphisms $\psi_j:F_j\to C$ such that for each $\alpha_{ij}:i\to j$ in $J$, the diagram
+\[\begin{tikzcd}
+& C\\
+F_i\arrow{ur}{\psi_i}\arrow{rr}[swap]{F_{\alpha_{ij}}} & & F_j\arrow{ul}[swap]{\psi_j}
+\end{tikzcd}\]commutes. A morphism of cocones $\theta:(C,\psi_j)\to(C',\psi'_j)$ is a morphism $\theta:C\to C'$ in $\calC$ such that $\theta\circ\psi_j=\psi_j'$ for all $j\in J$.
+\end{definition}
+
+\begin{definition}
+A \emph{colimit} of a diagram $F:J\to\calC$, written $\phi_i:F_i\to\colim_{j\in J}F_j$, is an initial object in the category of cocones to $F$.
+\end{definition}
+In other words, a colimit of $F$ has the universal property that given any cocone $(C,\psi_j)$ to $F$, there is a unique morphism $u:\colim F_j\to C$ such that the diagram below commutes. Moreover, a colimit of $F$, if it exists, is unique up to unique isomorphism.
+\[\begin{tikzcd}
+& C &  \\
+ & \colim_{j\in J}F_j\arrow[u, dotted, "\exists!u"] & \\
+F_i\arrow[rr, "F_{\alpha_{ik}}"]\arrow[uur, bend left, "\psi_i"]\arrow[ur, "\phi_i"] & &F_k\arrow[uul, bend right, "\psi_k"]\arrow[ul, "\phi_k"]
+\end{tikzcd}\]
+
+\begin{definition}
+A limit or colimit for $F:J\to\calC$ is \emph{small} if the index category $J$ is small.
+
+A category $\calC$ is 
+\begin{itemize}
+\item \emph{complete} if $\calC$ has all small limits
+\item \emph{cocomplete} if $\calC$ has all small colimits
+\item \emph{bicomplete} if $\calC$ is both complete and cocomplete.
+
+\end{itemize}
+
+\end{definition}
+Later we wish to put model structures on the category of motivic spaces, but to do so we must assure that our category is bicomplete.
+
+\begin{proposition}
+If $\calC$ is a locally small category, then $[\calC^\op,\Set]$ has all small limits and colimits. 
+
+Moreover, for any $C\in\calC$, the evaluation functor 
+\begin{align*}
+\ev_C:[\calC^\op,\Set]&\to\Set\\
+F&\mapsto F(C)
+\end{align*}preserves all limits and colimits.
+\end{proposition}
+
+\begin{proof}
+Let $J$ be a small category and suppose we are given a functor $F:J\to[\calC^\op,\Set]$. If the limit of $F$ exists, it is a functor
+\[
+\lim_{j\in J}F_j:C^\op\to\Set.
+\]We show that \emph{if} the limit exists as an object in $[\calC^\op,\Set]$, then it is defined pointwise.
+
+By the Yoneda lemma we have, for any $C\in\calC$,
+\[
+\p*{\lim_{j\in J}F_j}(C)\cong\Hom(rC,\lim F_j).
+\]Since representable functors preserve limits by \Cref{preserving} we have
+\begin{align*}
+\Hom(rC,\lim F_j)&\cong \lim\Hom(rC,F_j)\\
+&=\lim (F_j(C)).
+\end{align*} 
+Therefore, we are forced to define
+\[
+\p*{\lim_{j\in J}F_j}(C)\defeq\lim_{j\in J}(F_j(C)).
+\]Thus the completeness of $[\calC^\op,\Set]$ follows from the completeness of $\Set$.
+
+From this it follows also that $\ev_C$ preserves limits, since
+\[
+\ev_C(\lim F_j)=(\lim F_j)(C)=\lim(F_jC).
+\]
+\end{proof}
+
+\begin{example}[The Grothendieck-construction]\label{comma}
+Suppose $\calC$ is a small category. Given a functor $F:\calC^\op\to\Set$, there is a small index category known as the \emph{category of elements}, written $\int_\calC F$. It is constructed as follows:
+\begin{itemize}
+\item The objects of $\int_\calC F$ are pairs $(x,C)$, for $C\in\calC$ and $x\in F(C)$.
+\item The morphisms $h:(x,C)\to(x',C')$ are morphisms $h:C'\to C$ in $\calC$ satisfying \[F(h)(x)=x'.\]
+\end{itemize}
+The category $\int_\calC F$ is small because $\calC$ is small. Furthermore, there is a ``projection functor''
+\[
+\pi:\int_\calC F\to \calC
+\]defined by
+\begin{align*}
+(x,C)&\mapsto C,\\
+(h:(x,C)\to(x',C'))&\mapsto h.
+\end{align*}
+
+\end{example}
+
+\begin{proposition}\label{colim-rep}
+If $\calC$ is a small category, then every object $F\in[\calC^\op,\Set]$ is a colimit of representable functors, i.e., there are objects $C_j\in\calC$ $(j\in J)$ such that
+\[
+\colim_{j\in J}rC_j\cong F.
+\]More precisely, there is a canonical choice of index category $J$ and a functor $\pi:J\to\calC$ such that there is a natural isomorphism $\colim_J r\circ\pi \cong F$.
+\end{proposition}
+
+\begin{proof}
+Our index category $J$ will be the category of elements of \Cref{comma}, i.e., we let
+\[J\defeq\int_\calC F.\]
+Note that, by the Yoneda lemma, there is a bijection between elements $x\in F(C)$ and natural transformations $x:rC\to F$. We wish to define a cocone $(F,\phi_{(x,C)})$ to $r\circ\pi$. Note that, for $(x,C)\in\int_\calC F$, the $\phi_{(x,C)}$ will be morphisms
+\[
+\phi_{(x,C)}:(r\circ\pi)(x,C)\to F.
+\]But $(r\circ\pi)(x,C)=rC$, so we can simply define
+\[
+\phi_{(x,C)}\defeq x:rC\to F,
+\]where we identify $x\in\Hom(rC,F)$ with $x\in FC$. We show that $(F,\phi_{(x,C)})$ is initial in the category of cocones to $r\pi$. So assume $(G,\psi_{(x,C)})$ is another cocone to $r\pi$. We must construct a unique natural transformation $\theta\colon F\to G$ making the standard diagrams commutative. For any $C\in\calC$, define
+\[\theta_C:FC\to GC
+\]by $\theta_C(x)\defeq\psi_{(x,C)}$, where we again have identified $\psi_{(x,C)}:rC\to G$ with $\psi_{(x,C)}\in GC$. To show that this map is unique, let $\eta:F\to G$ be a natural transformation commuting with the maps $x:yC\to F$. Then the Yoneda lemma yields that $\eta\circ x=\eta_{(x,C)}=\eta\circ x$.
+\end{proof}
+
+\begin{proposition}\label{initial}
+If $\calC$ is a small category, the Yoneda embedding $r:\calC\to[\calC^\op,\Set]$ is the free cocompletion of $\calC$. This means that given any cocomplete category $\calD$ with a functor $F:\calC\to\calD$, there is a limit preserving functor
+\[
+F_!:[\calC^\op,\Set]\to\calD
+\]such that the following diagram commutes up to natural isomorphism:
+\[\begin{tikzcd}
+\calC\arrow{r}{r}\arrow{d}[swap]{F} & \left[\calC^\op,\Set\right]\arrow[dotted]{ld}{\exists F_!}\\
+\calD &\end{tikzcd}\]
+Moreover, the functor $F_!$ is unique up to natural isomorphism.
+\end{proposition}
+\begin{remark}
+Since $F$ is a composition of two functors that preserve colimits, it follows that $F$ preserves colimits.
+\end{remark}
+Thus $[\calC^\op,\Set]$ is thought of as the ``initial functor category''.
+
+\begin{proof}[Proof of \Cref{initial}]
+We only define the functor $F_!$. For $G\in[\calC^\op,\Set]$, by \Cref{colim-rep} we may write
+\[
+G\cong\colim_{j\in J}rA_j,
+\]for $J=\int_\calC G$ and $A_j\in\calC$. We then define
+\[
+F_!(G)\defeq\colim_{j\in J} F(A_j).
+\]Since $\calD$ is cocomplete, $F_!(G)\in\calD$.
+\end{proof}
